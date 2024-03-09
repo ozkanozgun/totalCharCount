@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Total Character Count</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 200px; /* Adjusted margin */
+    }
+
+    #searchInput {
+        padding: 8px;
+        width: 500px;
+        font-size: 16px;
+    }
+
+    #searchButton {
+        padding: 10px 16px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    #searchButton:hover {
+        background-color: #7e25d7;
+    }
+</style>
+</head>
+<body>
+    <h2>Type a sentence and press Enter</h2>
+    <input type="text" id="searchInput" placeholder="Enter your sentence...">
+    <button id="searchButton">Enter</button>
+
+    <script>
+        function totalCharCount(wordsArray) {
+            if (!Array.isArray(wordsArray)) {
+                return "Please enter an array!";
+            }
+
+            let totalChars = 0;
+
+            for (let i = 0; i < wordsArray.length; i++) {
+                if (typeof wordsArray[i] !== "string") {
+                    return "Array should only contain strings!";
+                }
+
+                totalChars += wordsArray[i].length;
+            }
+
+            return totalChars;
+        }
+
+        document.getElementById("searchButton").addEventListener("click", function() {
+            const inputText = document.getElementById("searchInput").value;
+            const wordsArray = inputText.split(" ");
+            const charCount = totalCharCount(wordsArray);
+            alert("Total character count: " + charCount);
+        });
+
+        document.getElementById("searchInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                const inputText = document.getElementById("searchInput").value;
+                const wordsArray = inputText.split(" ");
+                const charCount = totalCharCount(wordsArray);
+                alert("Total character count: " + charCount);
+            }
+        });
+    </script>
+</body>
+</html>
